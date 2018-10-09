@@ -1,0 +1,9 @@
+Need to add bulk insert to database properties
+
+spring:
+  application:
+    name: DeliveryPlanner
+
+google_api:
+  url: https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins={slat},{slon}&destinations={dlat},{dlon}key={key}
+  key: <your-key>

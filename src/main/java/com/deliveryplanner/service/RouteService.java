@@ -33,11 +33,9 @@ public class RouteService {
     }
 
     @Transactional
-    public PathDto getDeliveriesByRank(double startLat, double startLon, double endLat, double endLon,
-                                       List<DeliveryDto> deliveries) {
+    public PathDto getDeliveriesByRank(double startLat, double startLon, List<DeliveryDto> deliveries) {
         String pathId = calculatePathId();
-        List<RankedDelivery> rankedDeliveries = pathCreator.createPath(new DeliveryDto(startLat, startLon),
-                new DeliveryDto(endLat, endLon), deliveries);
+        List<RankedDelivery> rankedDeliveries = pathCreator.createPath(new DeliveryDto(startLat, startLon), deliveries);
         Collections.sort(rankedDeliveries, Comparator.comparingInt(RankedDelivery::getRank));
 
         PathDto pathDto = new PathDto(pathId, rankedDeliveries);

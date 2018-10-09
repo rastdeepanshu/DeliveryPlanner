@@ -27,11 +27,9 @@ public class RouteController {
     public PathDto getDeliveriesByRank(
             @RequestParam("slat") double startLat,
             @RequestParam("slon") double startLon,
-            @RequestParam("elat") double endLat,
-            @RequestParam("elon") double endLon,
             List<DeliveryDto> deliveries) {
 
-        return routeService.getDeliveriesByRank(startLat, startLon, endLat, endLon, deliveries);
+        return routeService.getDeliveriesByRank(startLat, startLon, deliveries);
     }
 
     @RequestMapping(value = {"/paths/{pathId}/deliveries/{currentDelivery}"}, method = RequestMethod.GET)
