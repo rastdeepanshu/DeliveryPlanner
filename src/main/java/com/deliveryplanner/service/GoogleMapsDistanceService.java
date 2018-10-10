@@ -2,6 +2,7 @@ package com.deliveryplanner.service;
 
 import com.deliveryplanner.dto.MapDistanceDto;
 import com.deliveryplanner.exception.ServiceException;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -23,8 +24,9 @@ public class GoogleMapsDistanceService implements DistanceService {
         this.restTemplate = restTemplate;
     }
 
+    @SneakyThrows
     @Override
-    public long calculateDistance(double startLat, double startLon, double endLat, double endLon) throws ServiceException {
+    public long calculateDistance(double startLat, double startLon, double endLat, double endLon) {
         MapDistanceDto mapDistanceDto = restTemplate.getForObject(routesApiUrl, MapDistanceDto.class, startLat, startLon, endLat, endLon);
         if (!"OK".equalsIgnoreCase(mapDistanceDto.getStatus())) {
             throw new ServiceException("Could not make a successful call to google api");

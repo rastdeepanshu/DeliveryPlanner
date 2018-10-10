@@ -2,11 +2,11 @@ package com.deliveryplanner.algorithm;
 
 import com.deliveryplanner.dto.DeliveryDto;
 import com.deliveryplanner.dto.RankedDelivery;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Service
+@Component
 public class PathCreator {
 
     private DistanceMatrixCreator distanceMatrixCreator;

@@ -26,10 +26,12 @@ public class RouteService {
     private DeliveryToDeliveryDtoMapper deliveryDtoMapper;
 
     public RouteService(DeliveryRepository deliveryRepository, PathCreator pathCreator,
-                        PathDtoToDeliveryMapper pathToDeliveryMapper) {
+                        PathDtoToDeliveryMapper pathToDeliveryMapper,
+                        DeliveryToDeliveryDtoMapper deliveryDtoMapper) {
         this.deliveryRepository = deliveryRepository;
         this.pathCreator = pathCreator;
         this.pathToDeliveryMapper = pathToDeliveryMapper;
+        this.deliveryDtoMapper = deliveryDtoMapper;
     }
 
     @Transactional
