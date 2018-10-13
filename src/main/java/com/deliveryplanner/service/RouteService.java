@@ -8,7 +8,6 @@ import com.deliveryplanner.exception.ServiceException;
 import com.deliveryplanner.mapper.DeliveryToDeliveryDtoMapper;
 import com.deliveryplanner.mapper.PathDtoToDeliveryMapper;
 import com.deliveryplanner.repository.DeliveryRepository;
-import com.deliveryplanner.algorithm.PathCreator;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

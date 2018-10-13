@@ -1,6 +1,6 @@
-package com.deliveryplanner.algorithm;
+package com.deliveryplanner.algorithm.heldKarp;
 
-import com.deliveryplanner.dto.DeliveryDto;
+import com.deliveryplanner.algorithm.heldKarp.object.OrderedDelivery;
 import com.deliveryplanner.service.DistanceService;
 import org.springframework.stereotype.Component;
 
@@ -15,14 +15,14 @@ public class DistanceMatrixCreator {
         this.distanceService = distanceService;
     }
 
-    public double[][] create(List<DeliveryDto> deliveries) {
+    public double[][] create(List<OrderedDelivery> deliveries) {
         double[][] distanceMatrix = new double[deliveries.size()][deliveries.size()];
 
         for(int i = 0; i < deliveries.size(); i++) {
             for (int j = 0; j < deliveries.size(); j++) {
                 if (i != j) {
-                    DeliveryDto start = deliveries.get(i);
-                    DeliveryDto end = deliveries.get(j);
+                    OrderedDelivery start = deliveries.get(i);
+                    OrderedDelivery end = deliveries.get(j);
                     distanceMatrix[i][j] = distanceService.calculateDistance(
                             start.getLatitude(), start.getLongitude(),
                             end.getLatitude(), end.getLongitude());

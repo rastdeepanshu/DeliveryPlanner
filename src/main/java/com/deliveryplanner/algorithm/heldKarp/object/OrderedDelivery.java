@@ -1,4 +1,4 @@
-package com.deliveryplanner.dto;
+package com.deliveryplanner.algorithm.heldKarp.object;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -11,6 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class DeliveryDto {
-    private double latitude, longitude;
+public class OrderedDelivery {
+    int index;
+    double latitude, longitude;
 }
