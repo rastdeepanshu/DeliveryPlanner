@@ -2,7 +2,7 @@ package com.deliveryplanner.service;
 
 import com.deliveryplanner.dto.DeliveryDto;
 import com.deliveryplanner.dto.PathDto;
-import com.deliveryplanner.dto.RankedDelivery;
+import com.deliveryplanner.dto.RankedDeliveryDto;
 import com.deliveryplanner.entity.Delivery;
 import com.deliveryplanner.exception.ServiceException;
 import com.deliveryplanner.mapper.DeliveryToDeliveryDtoMapper;
@@ -36,8 +36,8 @@ public class RouteService {
     @Transactional
     public PathDto getDeliveriesByRank(double startLat, double startLon, List<DeliveryDto> deliveries) {
         String pathId = calculatePathId();
-        List<RankedDelivery> rankedDeliveries = pathCreator.createPath(new DeliveryDto(startLat, startLon), deliveries);
-        Collections.sort(rankedDeliveries, Comparator.comparingInt(RankedDelivery::getRank));
+        List<RankedDeliveryDto> rankedDeliveries = pathCreator.createPath(new DeliveryDto(startLat, startLon), deliveries);
+        Collections.sort(rankedDeliveries, Comparator.comparingInt(RankedDeliveryDto::getRank));
 
         PathDto pathDto = new PathDto(pathId, rankedDeliveries);
         deliveryRepository.save(pathToDeliveryMapper.convert(pathDto));

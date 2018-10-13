@@ -3,14 +3,13 @@ package com.deliveryplanner.algorithm.heldKarp;
 import com.deliveryplanner.algorithm.heldKarp.object.NodePath;
 import com.deliveryplanner.algorithm.heldKarp.object.OrderedDelivery;
 import com.deliveryplanner.dto.DeliveryDto;
-import com.deliveryplanner.dto.RankedDelivery;
+import com.deliveryplanner.dto.RankedDeliveryDto;
 import com.deliveryplanner.service.PathCreator;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -27,7 +26,7 @@ public class HeldKarpPathCreator implements PathCreator {
         this.optimalPath = optimalPath;
     }
 
-    public List<RankedDelivery> createPath(DeliveryDto start, List<DeliveryDto> deliveries) {
+    public List<RankedDeliveryDto> createPath(DeliveryDto start, List<DeliveryDto> deliveries) {
         List<OrderedDelivery> orderedDeliveries = getOrderedDeliveries(start, deliveries);
 
         double[][] distanceMatrix = distanceMatrixCreator.create(orderedDeliveries);
@@ -35,7 +34,7 @@ public class HeldKarpPathCreator implements PathCreator {
         List<Set<OrderedDelivery>> nodes = generateSubsets(orderedDeliveries);
         List<NodePath> nodePaths = createAllPossibleNodePaths(nodes, orderedDeliveries);
 
-        return optimalPath.create(distanceMatrix, nodePaths);
+        return optimalPath.create(distanceMatrix, nodePaths, orderedDeliveries);
     }
 
     private List<OrderedDelivery> getOrderedDeliveries(DeliveryDto start, List<DeliveryDto> deliveries) {

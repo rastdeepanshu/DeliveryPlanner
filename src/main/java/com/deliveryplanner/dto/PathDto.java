@@ -13,5 +13,5 @@ import java.util.List;
 @NoArgsConstructor
 public class PathDto {
     String pathId;
-    List<RankedDelivery> rankedDeliveries;
+    List<RankedDeliveryDto> rankedDeliveries;
 }

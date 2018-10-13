@@ -12,6 +12,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @EqualsAndHashCode
 public class OrderedDelivery {
-    int index;
-    double latitude, longitude;
+    private int index;
+    private double latitude, longitude;
 }

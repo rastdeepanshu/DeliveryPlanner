@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RankedDelivery {
-    private DeliveryDto deliveryDto;
+public class RankedDeliveryDto {
     private int rank;
+    private double latitude, longitude;
 }
