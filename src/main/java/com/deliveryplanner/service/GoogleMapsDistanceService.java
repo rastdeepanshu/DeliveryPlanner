@@ -27,7 +27,7 @@ public class GoogleMapsDistanceService implements DistanceService {
     @SneakyThrows
     @Override
     public long calculateDistance(double startLat, double startLon, double endLat, double endLon) {
-        MapDistanceDto mapDistanceDto = restTemplate.getForObject(routesApiUrl, MapDistanceDto.class, startLat, startLon, endLat, endLon);
+        MapDistanceDto mapDistanceDto = restTemplate.getForObject(routesApiUrl, MapDistanceDto.class, startLat, startLon, endLat, endLon, apiKey);
         if (!"OK".equalsIgnoreCase(mapDistanceDto.getStatus())) {
             throw new ServiceException("Could not make a successful call to google api");
         }

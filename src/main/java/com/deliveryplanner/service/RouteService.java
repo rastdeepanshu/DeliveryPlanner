@@ -20,15 +20,15 @@ import java.util.UUID;
 public class RouteService {
 
     private DeliveryRepository deliveryRepository;
-    private PathCreator pathCreator;
+    private ShortestRoute shortestRoute;
     private PathDtoToDeliveryMapper pathToDeliveryMapper;
     private DeliveryToDeliveryDtoMapper deliveryDtoMapper;
 
-    public RouteService(DeliveryRepository deliveryRepository, PathCreator pathCreator,
+    public RouteService(DeliveryRepository deliveryRepository, ShortestRoute shortestRoute,
                         PathDtoToDeliveryMapper pathToDeliveryMapper,
                         DeliveryToDeliveryDtoMapper deliveryDtoMapper) {
         this.deliveryRepository = deliveryRepository;
-        this.pathCreator = pathCreator;
+        this.shortestRoute = shortestRoute;
         this.pathToDeliveryMapper = pathToDeliveryMapper;
         this.deliveryDtoMapper = deliveryDtoMapper;
     }
@@ -36,7 +36,7 @@ public class RouteService {
     @Transactional
     public PathDto getDeliveriesByRank(double startLat, double startLon, List<DeliveryDto> deliveries) {
         String pathId = calculatePathId();
-        List<RankedDeliveryDto> rankedDeliveries = pathCreator.createPath(new DeliveryDto(startLat, startLon), deliveries);
+        List<RankedDeliveryDto> rankedDeliveries = shortestRoute.createRoute(new DeliveryDto(startLat, startLon), deliveries);
         Collections.sort(rankedDeliveries, Comparator.comparingInt(RankedDeliveryDto::getRank));
 
         PathDto pathDto = new PathDto(pathId, rankedDeliveries);

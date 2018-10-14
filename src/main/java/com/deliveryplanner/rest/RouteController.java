@@ -5,9 +5,11 @@ import com.deliveryplanner.dto.PathDto;
 import com.deliveryplanner.exception.ServiceException;
 import com.deliveryplanner.service.RouteService;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.InvalidParameterException;
@@ -24,10 +26,10 @@ public class RouteController {
     }
 
     @RequestMapping(value = {"/paths"}, method = RequestMethod.POST)
-    public PathDto getDeliveriesByRank(
+    public @ResponseBody PathDto getDeliveriesByRank(
             @RequestParam("slat") double startLat,
             @RequestParam("slon") double startLon,
-            List<DeliveryDto> deliveries) {
+            @RequestBody List<DeliveryDto> deliveries) {
 
         return routeService.getDeliveriesByRank(startLat, startLon, deliveries);
     }

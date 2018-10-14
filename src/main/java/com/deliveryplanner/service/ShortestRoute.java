@@ -5,7 +5,7 @@ import com.deliveryplanner.dto.RankedDeliveryDto;
 
 import java.util.List;
 
-public interface PathCreator {
+public interface ShortestRoute {
 
-    List<RankedDeliveryDto> createPath(DeliveryDto start, List<DeliveryDto> deliveries);
+    List<RankedDeliveryDto> createRoute (DeliveryDto start, List<DeliveryDto> deliveries);
 }

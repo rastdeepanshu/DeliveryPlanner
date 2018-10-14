@@ -15,8 +15,8 @@ public class PathDtoToDeliveryMapper {
                 .map(rankedDelivery -> new Delivery(0,
                         pathDto.getPathId(),
                         rankedDelivery.getRank(),
-                        rankedDelivery.getDeliveryDto().getLatitude(),
-                        rankedDelivery.getDeliveryDto().getLongitude()))
+                        rankedDelivery.getLatitude(),
+                        rankedDelivery.getLongitude()))
                 .collect(Collectors.toList());
     }
 }

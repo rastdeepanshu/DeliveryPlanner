@@ -1,9 +1,15 @@
-Need to add bulk insert to database properties
-
 spring:
   application:
     name: DeliveryPlanner
+  datasource:
+    url: jdbc:mysql://localhost:3306/delivery_planner?createDatabaseIfNotExist=true&rewriteBatchedStatements=true
+    username: root
+    password:
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
 
 google_api:
-  url: https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins={slat},{slon}&destinations={dlat},{dlon}key={key}
-  key: <your-key>
+  url: https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins={slat},{slon}&destinations={dlat},{dlon}&key={key}
+  key:

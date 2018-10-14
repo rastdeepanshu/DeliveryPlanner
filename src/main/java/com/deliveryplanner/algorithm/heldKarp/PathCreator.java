@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.Set;
 
 @Component
-public class OptimalPath {
+public class PathCreator {
 
     public List<RankedDeliveryDto> create (double[][] distanceMatrix, List<NodePath> nodePaths,
                                            List<OrderedDelivery> deliveries) {
