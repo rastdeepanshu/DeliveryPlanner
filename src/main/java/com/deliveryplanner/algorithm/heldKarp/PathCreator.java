@@ -15,9 +15,9 @@ import java.util.Set;
 @Component
 public class PathCreator {
 
-    public List<RankedDeliveryDto> create (double[][] distanceMatrix, List<NodePath> nodePaths,
+    public List<RankedDeliveryDto> create (long[][] distanceMatrix, List<NodePath> nodePaths,
                                            List<OrderedDelivery> deliveries) {
-        Map<NodePath, Double> distanceMap = new HashMap<>();
+        Map<NodePath, Long> distanceMap = new HashMap<>();
         Map<NodePath, OrderedDelivery> parentMap = new HashMap<>();
 
         nodePaths.forEach(path -> findPathCost(path, distanceMatrix, distanceMap, parentMap, deliveries));
@@ -30,19 +30,19 @@ public class PathCreator {
         return result;
     }
 
-    private void findPathCost(NodePath path, double[][] distanceMatrix, Map<NodePath, Double> distanceMap,
+    private void findPathCost(NodePath path, long[][] distanceMatrix, Map<NodePath, Long> distanceMap,
                               Map<NodePath, OrderedDelivery> parentMap, List<OrderedDelivery> deliveries) {
         if (path.getVia().size() == 0) {
             distanceMap.put(path, distanceMatrix[0][path.getDestination().getIndex()]);
             parentMap.put(path, deliveries.get(0));
         } else {
-            double minCost = Double.MAX_VALUE;
+            long minCost = Long.MAX_VALUE;
             OrderedDelivery parent = null;
             for (OrderedDelivery od : path.getVia()) {
                 Set<OrderedDelivery> copyOfVia = new HashSet<>(path.getVia());
                 copyOfVia.remove(od);
                 NodePath reducedNodePath = new NodePath(od, copyOfVia);
-                double cost = distanceMatrix[od.getIndex()][path.getDestination().getIndex()] +
+                long cost = distanceMatrix[od.getIndex()][path.getDestination().getIndex()] +
                         distanceMap.get(reducedNodePath);
 
                 if (cost < minCost) {

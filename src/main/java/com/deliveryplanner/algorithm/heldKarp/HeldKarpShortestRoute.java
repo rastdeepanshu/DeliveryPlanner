@@ -30,7 +30,7 @@ public class HeldKarpShortestRoute implements ShortestRoute {
     public List<RankedDeliveryDto> createRoute(DeliveryDto start, List<DeliveryDto> deliveries) {
         List<OrderedDelivery> orderedDeliveries = getOrderedDeliveries(start, deliveries);
 
-        double[][] distanceMatrix = distanceMatrixCreator.create(orderedDeliveries);
+        long[][] distanceMatrix = distanceMatrixCreator.create(orderedDeliveries);
 
         List<Set<OrderedDelivery>> nodes = generateSubsets(orderedDeliveries);
         List<NodePath> nodePaths = createAllPossibleNodePaths(nodes, orderedDeliveries);
@@ -38,7 +38,7 @@ public class HeldKarpShortestRoute implements ShortestRoute {
         return pathCreator.create(distanceMatrix, nodePaths, orderedDeliveries);
     }
 
-    private List<OrderedDelivery> getOrderedDeliveries(DeliveryDto start, List<DeliveryDto> deliveries) {
+    List<OrderedDelivery> getOrderedDeliveries(DeliveryDto start, List<DeliveryDto> deliveries) {
         List<OrderedDelivery> orderedDeliveries = new ArrayList<>();
         orderedDeliveries.add(new OrderedDelivery(0, start.getLatitude(), start.getLongitude()));
 
@@ -52,6 +52,7 @@ public class HeldKarpShortestRoute implements ShortestRoute {
     /**
      *
      * @return All the subsets of nodes except the starting node.
+     * Subsets for List[0,1,2] are {1}, {2} and {1,2}
      */
     List<Set<OrderedDelivery>> generateSubsets(List<OrderedDelivery> deliveries) {
         List<Set<OrderedDelivery>> nodes = new ArrayList<>();
@@ -75,7 +76,7 @@ public class HeldKarpShortestRoute implements ShortestRoute {
      *
      * @return List of Nodepaths ordered by the number of elements they have in "via".
      */
-    private List<NodePath> createAllPossibleNodePaths(List<Set<OrderedDelivery>> nodes,
+    List<NodePath> createAllPossibleNodePaths(List<Set<OrderedDelivery>> nodes,
                                                       List<OrderedDelivery> deliveries) {
         List<NodePath> result = new ArrayList<>();
 

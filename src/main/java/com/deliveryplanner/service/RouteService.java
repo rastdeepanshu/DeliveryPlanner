@@ -35,7 +35,7 @@ public class RouteService {
 
     @Transactional
     public PathDto getDeliveriesByRank(double startLat, double startLon, List<DeliveryDto> deliveries) {
-        String pathId = calculatePathId();
+        String pathId = generatePathId();
         List<RankedDeliveryDto> rankedDeliveries = shortestRoute.createRoute(new DeliveryDto(startLat, startLon), deliveries);
         Collections.sort(rankedDeliveries, Comparator.comparingInt(RankedDeliveryDto::getRank));
 
@@ -44,7 +44,7 @@ public class RouteService {
         return pathDto;
     }
 
-    private String calculatePathId() {
+    private String generatePathId() {
         return UUID.randomUUID().toString();
     }
 

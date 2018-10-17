@@ -1,0 +1,18 @@
+spring:
+  profiles:
+    active: test
+  datasource:
+    url: jdbc:h2:mem:delivery_planner;INIT=CREATE SCHEMA IF NOT EXISTS delivery_planner\;SET SCHEMA delivery_planner;DB_CLOSE_ON_EXIT=FALSE;DATABASE_TO_UPPER=false;MODE=MYSQL;
+    username: root
+    password: root
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
+      settings:
+        web-allow-others: true
+      enabled: true
+
+
+google_api:
+  url: www.dummyurl.com
+  key: dummyKey

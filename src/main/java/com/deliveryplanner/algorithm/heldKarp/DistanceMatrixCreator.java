@@ -15,8 +15,8 @@ public class DistanceMatrixCreator {
         this.distanceService = distanceService;
     }
 
-    public double[][] create(List<OrderedDelivery> deliveries) {
-        double[][] distanceMatrix = new double[deliveries.size()][deliveries.size()];
+    public long[][] create(List<OrderedDelivery> deliveries) {
+        long[][] distanceMatrix = new long[deliveries.size()][deliveries.size()];
 
         for(int i = 0; i < deliveries.size(); i++) {
             for (int j = 0; j < deliveries.size(); j++) {
